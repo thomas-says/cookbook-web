@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
+import 'antd/dist/antd.css';
+import HomePage from './Home/HomePage';
+import AddPage from './AddPage/AddPage';
+import EditPage from './EditPage/EditPage';
+import DefaultLayout from './DefaultLayout';
 
 class App extends Component {
+  constructor(props)
+  {
+    super(props);
+    this.state =  {
+      currentItem: 'home',
+    }
+  }
+
+  handleClick = (e) => {
+    this.setState({
+      currentItem: e.key,
+    });
+  }
+
   render() {
+    const { currentItem } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Router>
+          <div>
+            <Route
+              exact path="/"
+              render={() => <DefaultLayout currentItem={currentItem} onClick={this.handleClick}><HomePage /></DefaultLayout>}
+            />
+            <Route
+              exact path="/add"
+              render={() => <DefaultLayout currentItem={currentItem} onClick={this.handleClick}><AddPage /></DefaultLayout>}
+            />
+            <Route
+              exact path="/edit/:id_recette"
+              render={(props) => <DefaultLayout currentItem={currentItem} onClick={this.handleClick}><EditPage {...props} /></DefaultLayout>}
+            />
+          </div>
+        </Router>
       </div>
     );
   }

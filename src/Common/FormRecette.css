@@ -1,0 +1,37 @@
+.divider {
+  margin: 20px 0;
+}
+
+.error-message {
+  color: red;
+}
+
+.form-recipes {
+  width: 70%;
+  margin: auto;
+}
+
+
+
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content-name{
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+
+}
+
+select{
+  padding-top: 14px !important;
+  margin-left: 15px !important;
+
+}
+.txt-area{
+  height: 30%;
+}
+
